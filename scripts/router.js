@@ -5,7 +5,7 @@ export const router = {};
 /**
  * Changes the "page" (state) that your SPA app is currently set to
  */
-router.setState = function() {
+router.setState = function(state, old) {
   /**
    * - There are three states that your SPA app will have
    *    1. The home page
@@ -35,4 +35,51 @@ router.setState = function() {
    *    1. You may add as many helper functions in this file as you like
    *    2. You may modify the parameters of setState() as much as you like
    */
+  let myHeading = document.querySelector('h1');
+  let myBody = document.body
+  let myEntry = document.querySelector('entry-page')
+
+  // Go to settings page
+  if (state.name == 'Settings' && myBody.className != 'settings') {
+    // clear entries
+    myBody.removeChild(myEntry);
+    myBody.appendChild(document.createElement('entry-page'));
+
+    // set heading and layout
+    myHeading.innerHTML = 'Settings';
+    myBody.className = 'settings';
+
+    // for forwards and backwards
+    if (!old){
+      history.pushState(state, state.name, '#settings');
+    }
+
+  // Go to home page
+  } else if (state.name == 'Home' && myBody.className != '') {
+    // clear entries
+    myBody.removeChild(myEntry);
+    myBody.appendChild(document.createElement('entry-page'));
+
+    // set heading and layout
+    myHeading.innerHTML = 'Journal Entries';
+    myBody.className = '';
+
+    // for forwards and backwards
+    if (!old){
+      history.pushState(state, state.name, '/');
+    }
+
+  // Go to entry page
+  } else if (state.name == 'Entry' && myBody.className != 'single-entry') {
+    // set heading and layout
+    myHeading.innerHTML = state.name + state.id;
+    myBody.className = 'single-entry';
+    myEntry.entry = state.entry;
+
+    // for forwards and backwards
+    if (!old) {
+      history.pushState(state, state.name, '#entry' + state.id);
+    }
+
+  }
 }

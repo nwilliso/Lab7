@@ -16,3 +16,23 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 });
+
+// Click on cog to go to settings
+document.querySelector('[alt="settings"]').addEventListener('click', () => {
+  setState({name: 'Settings'}, false);
+});
+
+// Click on header to go back home
+document.querySelector('h1').addEventListener('click', () => {
+  setState({name: 'Home'}, false);
+});
+
+// Click on entry to go to that entry
+document.querySelector('main').addEventListener('click', (event) => {
+  setState({name: 'Entry', id: event.target.id, entry: event.target.entry}, false);
+});
+
+// Click on forward or backwards
+window.addEventListener('popstate', () => {
+  setState(history.state, true);
+});
