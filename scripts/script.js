@@ -29,7 +29,14 @@ document.querySelector('h1').addEventListener('click', () => {
 
 // Click on entry to go to that entry
 document.querySelector('main').addEventListener('click', (event) => {
-  setState({name: 'Entry', id: event.target.id, entry: event.target.entry}, false);
+  let i = 1;
+  let child = event.target.previousSibling
+  while ( child != null){
+    i++;
+    child = child.previousSibling;
+  }
+  //console.log(event.target);
+  setState({name: 'Entry', id: i, entry: event.target.entry}, false);
 });
 
 // Click on forward or backwards

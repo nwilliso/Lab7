@@ -72,7 +72,7 @@ router.setState = function(state, old) {
   // Go to entry page
   } else if (state.name == 'Entry' && myBody.className != 'single-entry') {
     // set heading and layout
-    myHeading.innerHTML = state.name + state.id;
+    myHeading.innerHTML = 'Entry '+ state.id;
     myBody.className = 'single-entry';
     myEntry.entry = state.entry;
 
