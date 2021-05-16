@@ -66,7 +66,7 @@ router.setState = function(state, old) {
 
     // for forwards and backwards
     if (!old){
-      history.pushState(state, state.name, '/');
+      history.pushState(state, state.name, './');
     }
 
   // Go to entry page
