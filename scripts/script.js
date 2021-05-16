@@ -41,5 +41,12 @@ document.querySelector('main').addEventListener('click', (event) => {
 
 // Click on forward or backwards
 window.addEventListener('popstate', () => {
-  setState(history.state, true);
+  // for first time entering site
+  if (history.state == null){
+    setState({name: 'Home'}, true);
+  
+  // for any other time
+  } else {
+    setState(history.state, true);
+  }
 });
